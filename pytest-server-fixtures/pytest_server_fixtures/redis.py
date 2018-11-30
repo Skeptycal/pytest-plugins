@@ -8,7 +8,6 @@ from __future__ import absolute_import
 import socket
 
 import pytest
-import redis
 
 from pytest_server_fixtures import CONFIG
 
@@ -50,6 +49,8 @@ class RedisTestServer(TestServerV2):
     """
 
     def __init__(self, db=0, **kwargs):
+        global redis
+        import redis
         self.db = db
         super(RedisTestServer, self).__init__(**kwargs)
         self._api = None
