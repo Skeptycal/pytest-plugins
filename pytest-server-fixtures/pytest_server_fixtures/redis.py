@@ -59,7 +59,7 @@ class RedisTestServer(TestServerV2):
 
     @property
     def api(self):
-        if not (self._server and self._server.is_running()):
+        if not self.hostname:
             raise "Redis not ready"
         if not self._api:
             self._api = redis.Redis(host=self.hostname, port=self.port, db=self.db)
@@ -81,6 +81,8 @@ class RedisTestServer(TestServerV2):
 
         if 'hostname' in kwargs:
             cmd += ["--bind", "%s" % kwargs['hostname']]
+        else:
+            cmd += ["--bind", "0.0.0.0"]
 
         return cmd
 
