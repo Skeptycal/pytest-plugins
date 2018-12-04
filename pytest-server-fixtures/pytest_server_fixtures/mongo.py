@@ -80,7 +80,7 @@ class MongoTestServer(TestServerV2):
 
     def get_cmd(self, **kwargs):
         cmd = [
-            CONFIG.mongo_executable,
+            CONFIG.mongo_bin,
             '--port=%s' % self.port,
             '--nounixsocket',
             '--syncdelay=0',
